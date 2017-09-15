@@ -1,16 +1,32 @@
 import csv
 import random
 
+
 file = "occupations.csv"
+"""
 file = open(file, 'r')
-contents = csv.reader(file)
+text = file.read()
+file.close()
+"""
+reader = csv.reader(open(file))
+#contents = csv.reader(file)
 
 jobs = {}
+#print reader
+def createDict(csv):
+        for rows in csv:
+                if rows[0] == "Job Class" or rows[0] == "Total":
+                        continue
+                else:
+                        jobs[rows[0]] = float(rows[1])
 
-for i in contents[1:len(contents) - 1]:
-    jobs[i[0]] = float(i[1])
+def randomJob(dict):
+        randNum = float(random.randint(1,998)/10)
+        for keys in dict.keys():
+                randNum = randNum - dict[keys]
+                if randNum < 0:
+                        print keys
+                        break
 
-def randomoccupation():
-    keys = jobs.keys().sort()
-
-randomoccupation()
+createDict(reader)
+randomJob(jobs)            
