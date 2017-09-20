@@ -25,8 +25,8 @@ def randomJob(dict):
         for keys in dict.keys():
                 randNum = randNum - dict[keys]
                 if randNum < 0:
-                        print keys
-                        break
+                        print keys, dict[keys]
+                        return keys
 
 createDict(reader)
-randomJob(jobs)            
+randomJob(jobs)
